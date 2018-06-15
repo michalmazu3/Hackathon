@@ -1,18 +1,18 @@
 export const menus = [
   {
     
-    "name": "Problemy z czystością",
+    "name": "Tereny zielone",
     "open": false,
-    "link": "/auth/problem-notifications",
+    "link": "/auth/green-fields",
     "icon": "grade",
-  },
-  {
+  }
+  //{
 
-    "name": "Śmieci wielkogabarytowe",
-    "open": false,
-    "link": "/auth/large-garbarge",
-    "icon": "grade",
-  },
+  //  "name": "Śmieci wielkogabarytowe",
+  //  "open": false,
+  //  "link": "/auth/large-garbarge",
+  //  "icon": "grade",
+  //},
 
 
 

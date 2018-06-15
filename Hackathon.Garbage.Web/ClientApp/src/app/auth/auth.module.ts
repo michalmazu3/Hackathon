@@ -24,7 +24,8 @@ import { ProblemNotificationService } from '../service/problem-notification/prob
 
 export const appRoutes: Routes = [{ 
   path: '', component: AuthComponent, children: [
-    { path: 'problem-notifications', loadChildren: '../problem-notifications/problem-notifications.module#ProblemNotificationsModule'},
+    { path: 'problem-notifications', loadChildren: '../problem-notifications/problem-notifications.module#ProblemNotificationsModule' },
+    { path: 'green-fields', loadChildren: '../green-fields/green-fields.module#GreenFieldsModule' },
         {path: 'dashboard', loadChildren: '../dashboard-crm/dashboard-crm.module#DashboardCrmModule'},
         {path: 'dashboard-account', loadChildren: '../dashboard-accounts/dashboard-accounts.module#DashboardAccountsModule'},
         {path: 'material-widgets', loadChildren: '../material-widgets/material-widgets.module#MaterialWidgetsModule'},

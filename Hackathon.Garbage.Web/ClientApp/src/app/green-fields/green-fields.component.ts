@@ -8,26 +8,27 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr'
 import { VertexModel } from '../models/vertex.model';
 import { LatLngLiteral } from '../models/google-maps-types';
 
+
 @Component({
-  selector: 'app-problem-notifications',
-  templateUrl: './problem-notifications.component.html',
-  styleUrls: ['./problem-notifications.component.scss']
+  selector: 'app-green-fields',
+  templateUrl: './green-fields.component.html',
+  styleUrls: ['./green-fields.component.scss']
 })
-export class ProblemNotificationsComponent implements OnInit {
+export class GreenFieldsComponent implements OnInit {
   markers: ProblemNotificationModel[];
   title: string = 'Kielce';
   lng: number = 20.628671;
   lat: number = 50.865544;
   zoom: number = 0;
   height: string = '500px';
- 
+
 
   paths: Array<LatLngLiteral> = [
-    { lat: 0, lng: 10 },
-    { lat: 0, lng: 20 },
-    { lat: 10, lng: 20 },
-    { lat: 10, lng: 10 },
-    { lat: 0, lng: 10 }
+    { lat: 25.774, lng: -80.190 },
+    { lat: 18.466, lng: -66.118 },
+    { lat: 32.321, lng: -64.757 },
+    { lat: 25.774, lng: -80.190 }
+
   ]
 
 
