@@ -7,7 +7,7 @@
           </agm-polyline-point>
         </agm-polygon>-->
 
-        <agm-polygon [editable]="true" [polyDraggable]="true" [paths]="paths"></agm-polygon>
+        <agm-polygon  *ngFor="let field of fields" [editable]="false" [polyDraggable]="false" [paths]="field.cordinates"></agm-polygon>
 
         <agm-marker *ngFor="let m of markers" [latitude]="m.latitude" [longitude]="m.longitude" modelsbyref="false">
           <agm-info-window>

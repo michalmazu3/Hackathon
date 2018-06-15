@@ -18,20 +18,20 @@ namespace Hackathon.Garbage.Api.Controllers
             var fields = new List<FieldEntity>();
             fields.Add(new FieldEntity {
                 Cordinates = {
-                    new CordinatesEntity { Latitude = new decimal(50.2), Longitude = new decimal(21.8) },
-                    new CordinatesEntity { Latitude = new decimal(50.2), Longitude = new decimal(21.84) },
-                    new CordinatesEntity { Latitude = new decimal(50.2), Longitude = new decimal(21.88) },
-                    new CordinatesEntity { Latitude = new decimal(50.4), Longitude = new decimal(21.9) },
+                    new CordinatesEntity { lat = new decimal(50.2), lng= new decimal(21.8) },
+                    new CordinatesEntity { lat = new decimal(50.2), lng= new decimal(21.84) },
+                    new CordinatesEntity { lat = new decimal(50.2), lng= new decimal(21.88) },
+                    new CordinatesEntity { lat = new decimal(50.4), lng= new decimal(21.9) },
                 },
                 Name = "działka 1",
                 });
             fields.Add(new FieldEntity
             {
                 Cordinates ={
-                    new CordinatesEntity { Latitude = new decimal(50.2), Longitude = new decimal(21.8) },
-                    new CordinatesEntity { Latitude = new decimal(50.2), Longitude = new decimal(21.84) },
-                    new CordinatesEntity { Latitude = new decimal(50.2), Longitude = new decimal(21.88) },
-                    new CordinatesEntity { Latitude = new decimal(50.4), Longitude = new decimal(21.9) },
+                    new CordinatesEntity { lat= new decimal(50.2), lng= new decimal(21.8) },
+                    new CordinatesEntity { lat= new decimal(50.2), lng= new decimal(21.84) },
+                    new CordinatesEntity { lat= new decimal(50.2), lng= new decimal(21.88) },
+                    new CordinatesEntity { lat= new decimal(50.4), lng= new decimal(21.9) },
                 },
                 Name = "działka 1"
             });

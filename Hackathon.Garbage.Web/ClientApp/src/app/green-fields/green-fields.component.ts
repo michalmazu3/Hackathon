@@ -7,6 +7,7 @@ import { ProblemNotificationModel } from '../model/api/problem-notification';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr'
 import { VertexModel } from '../models/vertex.model';
 import { LatLngLiteral } from '../models/google-maps-types';
+import { Field, Cordinate, Order } from '../model/api/api.models';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class GreenFieldsComponent implements OnInit {
   lat: number = 50.865544;
   zoom: number = 0;
   height: string = '500px';
-
+  fields: Field[];
 
   paths: Array<LatLngLiteral> = [
     { lat: 25.774, lng: -80.190 },
@@ -34,10 +35,21 @@ export class GreenFieldsComponent implements OnInit {
 
   @ViewChild(AgmMap) private myMap: AgmMap;
   @ViewChild('mapContainer') mapContainer: any;
-  constructor(private mapsAPILoader: MapsAPILoader, @Inject('problemNotificationService') private problemNotificationService) {
+  constructor(private mapsAPILoader: MapsAPILoader, @Inject('problemNotificationService') private problemNotificationService,
+    @Inject('greenFieldsService') private greenFieldsService
+
+  ) {
   }
 
   ngOnInit() {
+
+
+    this.greenFieldsService.getList().subscribe(res => {
+      console.log(res);
+      this.fields = res;
+    });
+
+
 
 
 

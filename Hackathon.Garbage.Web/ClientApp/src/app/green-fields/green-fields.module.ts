@@ -10,6 +10,7 @@ import * as hljsTypescript from 'highlight.js/lib/languages/typescript';
  import { Routes, RouterModule } from '@angular/router';
 import { ProblemNotificationService } from '../service/problem-notification/problem-notification.service';
 import { GreenFieldsComponent } from './green-fields.component';
+import { GreenFieldsService } from '../service/green-fields/green-fields.service';
 
 export const appRoutes: Routes = [
   { path: '', component: GreenFieldsComponent, data: { animation: 'googlemap' } },
@@ -45,7 +46,9 @@ export function highlightJsFactory(): any {
   exports: [
   ],
   providers: [
-    { provide: 'problemNotificationService', useClass: ProblemNotificationService }
+    { provide: 'problemNotificationService', useClass: ProblemNotificationService },
+    { provide: 'greenFieldsService', useClass: GreenFieldsService }
+
   ]
 
 })
