@@ -28,10 +28,12 @@ namespace Hackathon.Garbage.Dal.Migrations
                     b.Property<int>("FieldId");
 
                     b.Property<decimal>("lat")
-                        .HasColumnName("Latitude");
+                        .HasColumnName("Latitude")
+                        .HasColumnType("decimal(8,8)");
 
                     b.Property<decimal>("lng")
-                        .HasColumnName("Longitude ");
+                        .HasColumnName("Longitude ")
+                        .HasColumnType("decimal(8,8)");
 
                     b.HasKey("Id");
 
@@ -117,7 +119,7 @@ namespace Hackathon.Garbage.Dal.Migrations
             modelBuilder.Entity("Hackathon.Garbage.Dal.Entities.OrderEntity", b =>
                 {
                     b.HasOne("Hackathon.Garbage.Dal.Entities.ExecutiveEntity", "Executive")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("ExecutiveId")
                         .OnDelete(DeleteBehavior.Cascade);
 

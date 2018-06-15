@@ -27,8 +27,7 @@ namespace Hackathon.Garbage.Dal.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    CordinatesId = table.Column<int>(nullable: false)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,9 +54,9 @@ namespace Hackathon.Garbage.Dal.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Latitude = table.Column<decimal>(nullable: false),
-                    Longitude = table.Column<decimal>(nullable: false),
-                    FieldId = table.Column<int>(nullable: true)
+                    Latitude = table.Column<decimal>(type: "decimal(8,8)", nullable: false),
+                    Longitude = table.Column<decimal>(name: "Longitude ", type: "decimal(8,8)", nullable: false),
+                    FieldId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -67,7 +66,7 @@ namespace Hackathon.Garbage.Dal.Migrations
                         column: x => x.FieldId,
                         principalTable: "Fields",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,7 +78,8 @@ namespace Hackathon.Garbage.Dal.Migrations
                     FieldId = table.Column<int>(nullable: false),
                     ExecutiveId = table.Column<int>(nullable: false),
                     DeadlineDate = table.Column<DateTime>(nullable: false),
-                    FinishDate = table.Column<DateTime>(nullable: false)
+                    FinishDate = table.Column<DateTime>(nullable: false),
+                    Status = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

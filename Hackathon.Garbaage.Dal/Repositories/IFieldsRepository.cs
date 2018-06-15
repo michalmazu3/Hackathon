@@ -6,5 +6,6 @@ namespace Hackathon.Garbage.Dal.Repositories
     public interface IFieldsRepository
     {
         List<FieldEntity> GetAll();
+        int CreateOrUpdate(FieldEntity fieldEntity);
     }
 }

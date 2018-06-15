@@ -25,9 +25,9 @@ namespace Hackathon.Garbage.Dal.Entities
 
         public int Id { get; set; }
         public int FieldId { get; set; }
-        public FieldEntity Field { get; set; }
+        public virtual FieldEntity Field { get; set; }
         public int ExecutiveId { get; set; }
-        public ExecutiveEntity Executive { get; set; }
+        public virtual ExecutiveEntity Executive { get; set; }
         public DateTime DeadlineDate { get; set; }
         public DateTime FinishDate { get; set; }
         public OrderStatus Status { get; set; }

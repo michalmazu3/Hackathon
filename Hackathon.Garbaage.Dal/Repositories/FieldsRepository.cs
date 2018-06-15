@@ -15,13 +15,28 @@ namespace Hackathon.Garbage.Dal.Repositories
         {
         }
 
+        public int CreateOrUpdate(FieldEntity fieldEntity)
+        {
+            if (fieldEntity != null)
+            {
+                if (fieldEntity.Cordinates != null)
+                    _floraDbContext.AddRange(fieldEntity.Cordinates);
+                if (fieldEntity.Orders != null)
+                    _floraDbContext.AddRange(fieldEntity.Orders);
+                _floraDbContext.Add(fieldEntity);
+                return _floraDbContext.SaveChanges();
+            }
+            else
+                throw new ArgumentNullException();
+        }
+
         public List<FieldEntity> GetAll()
         {
             var result = _floraDbContext.
-                Fields.
+                Fields./*
                 Include(x => x.Cordinates).
-                Include(x => x.Orders)
-                .ToListAsync().Result;
+                Include(x => x.Orders).*/
+                ToListAsync().Result;
 
             return result;
         }
