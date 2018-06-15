@@ -10,7 +10,7 @@ namespace Hackathon.Garbage.Dal.Entities
 
         public FieldEntity()
         {
-            Id = id++;
+            //Id = id++;
             Cordinates = new List<CordinatesEntity>();
             Orders = new List<OrderEntity>();
         }

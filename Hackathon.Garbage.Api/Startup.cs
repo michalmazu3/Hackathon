@@ -1,5 +1,6 @@
 ﻿using Hackathon.Garbage.Api.Hubs;
 using Hackathon.Garbage.Dal.DbContexts;
+using Hackathon.Garbage.Dal.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,7 @@ namespace Hackathon.Garbage.Api
         {
 
             services.AddDbContext<FloraDbContext>(options =>
-                          options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;ConnectRetryCount=0")
+                          options.UseSqlServer("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = D:\\dev\\hackathon\\Database\\FloraDb.mdf;Integrated Security=True")
                           );
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -38,6 +39,8 @@ namespace Hackathon.Garbage.Api
            }));
 
             services.AddSignalR();
+
+            services.AddScoped<IFieldsRepository, FieldsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
