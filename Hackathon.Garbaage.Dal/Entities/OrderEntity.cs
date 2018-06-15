@@ -8,6 +8,11 @@ namespace Hackathon.Garbage.Dal.Entities
     public class OrderEntity : IEntity
     {
         private static int id = 1;
+
+        public OrderEntity()
+        {
+        }
+
         public OrderEntity(FieldEntity field)
         {
             //Field = field;

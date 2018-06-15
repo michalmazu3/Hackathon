@@ -23,18 +23,19 @@ namespace Hackathon.Garbage.Api
         {
 
             services.AddDbContext<FloraDbContext>(options =>
-                          options.UseSqlServer(Configuration.GetConnectionString("GarbageDbContext")), ServiceLifetime.Transient);
+                          options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;ConnectRetryCount=0")
+                          );
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
-       builder =>
-       {
-           builder
-           .AllowAnyMethod()
-           .AllowAnyHeader()
-           .AllowAnyOrigin()
-              .AllowCredentials();
-       }));
+           builder =>
+           {
+               builder
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowAnyOrigin()
+                  .AllowCredentials();
+           }));
 
             services.AddSignalR();
         }

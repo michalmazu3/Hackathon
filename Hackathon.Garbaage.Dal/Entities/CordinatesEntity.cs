@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Hackathon.Garbage.Dal.Entities
@@ -14,8 +15,8 @@ namespace Hackathon.Garbage.Dal.Entities
         }
 
         public int Id { get; set; }
-        public decimal Latitude { get; set; }
-        public decimal Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
 
         public virtual FieldEntity Field { get; set; }
     }
