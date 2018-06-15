@@ -35,7 +35,7 @@ namespace Hackathon.Garbage.Dal.Repositories
                     _floraDbContext.Add(fieldEntity);
                     return _floraDbContext.SaveChanges();
                 }
-                catch (Exception ex )
+                catch (Exception ex)
                 {
 
                     throw ex;
@@ -71,18 +71,22 @@ namespace Hackathon.Garbage.Dal.Repositories
                     if (field != null)
                     {
                         var cords = cordninates.Where(x => x.FieldId == entry).
-                            Select(x => {
+                            Select(x =>
+                            {
                                 x.Field = null;
                                 return x;
                             }).ToList();
                         var os = orders.Where(x => x.FieldId == entry).
-                            Select(x => {
+                            Select(x =>
+                            {
                                 x.Field = null;
-                                x.Executive = null;
+                                if (x.Executive != null)
+                                    x.Executive.Orders = null;
                                 return x;
                             }).ToList();
                         var rats = ratings.Where(x => x.FieldId == entry).
-                            Select(x => {
+                            Select(x =>
+                            {
                                 x.Field = null;
                                 return x;
                             }).ToList();
