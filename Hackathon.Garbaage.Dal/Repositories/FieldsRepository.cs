@@ -59,6 +59,7 @@ namespace Hackathon.Garbage.Dal.Repositories
                     Where(x => fieldIds.Contains(x.FieldId)).
                     ToList();
                 var orders = _floraDbContext.Orders.
+                    Include(x => x.Executive).
                     Where(x => fieldIds.Contains(x.FieldId)).
                     ToList();
                 var ratings = _floraDbContext.Ratings.
@@ -69,9 +70,22 @@ namespace Hackathon.Garbage.Dal.Repositories
                     var field = data.FirstOrDefault(x => x.Id == entry);
                     if (field != null)
                     {
-                        var cords = cordninates.Where(x => x.FieldId == entry).Select(x => { x.Field = null; return x; }).ToList();
-                        var os = orders.Where(x => x.FieldId == entry).Select(x => { x.Field = null; return x; }).ToList();
-                        var rats = ratings.Where(x => x.FieldId == entry).Select(x => { x.Field = null; return x; }).ToList();
+                        var cords = cordninates.Where(x => x.FieldId == entry).
+                            Select(x => {
+                                x.Field = null;
+                                return x;
+                            }).ToList();
+                        var os = orders.Where(x => x.FieldId == entry).
+                            Select(x => {
+                                x.Field = null;
+                                x.Executive = null;
+                                return x;
+                            }).ToList();
+                        var rats = ratings.Where(x => x.FieldId == entry).
+                            Select(x => {
+                                x.Field = null;
+                                return x;
+                            }).ToList();
                         if (cords != null)
                             field.Cordinates.AddRange(cords);
                         if (os != null && os.Any())
