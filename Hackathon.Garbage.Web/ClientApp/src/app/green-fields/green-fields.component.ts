@@ -78,6 +78,11 @@ export class GreenFieldsComponent implements OnInit {
       // this.height = String(h) + 'px';
     }, 300);
   }
+
+  clickField(field: Field) {
+    console.log(field.name);
+
+  }
   ngDoCheck() {
     // let h = this.mapContainer.nativeElement.offsetHeight - 10;
     // this.height = String(h) + 'px';
