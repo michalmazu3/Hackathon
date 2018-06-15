@@ -13,7 +13,7 @@ namespace Hackathon.Garbage.Api.Controllers
     public class FieldsController : ControllerBase
     {
         [HttpGet("GetAll")]
-        public IActionResult GetAll()
+        public ActionResult<List<FieldEntity>> GetAll()
         {
             var fields = new List<FieldEntity>();
             fields.Add(new FieldEntity {
