@@ -10,6 +10,7 @@ import { LatLngLiteral } from '../models/google-maps-types';
 import { Field, Cordinate, Order } from '../model/api/api.models';
 import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA, MatFormField, MatDialogActions, MatDialogContent, MatInput, MatList } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { EXPANSION_HELPERS } from '../material-widgets/expansion-panel/helpers.data';
 
 @Component({
   selector: 'app-green-fields',
@@ -24,7 +25,7 @@ export class GreenFieldsComponent implements OnInit {
   zoom: number = 0;
   height: string = '500px';
   fields: Field[];
-
+  expansionHelpers = EXPANSION_HELPERS;
  
 
 

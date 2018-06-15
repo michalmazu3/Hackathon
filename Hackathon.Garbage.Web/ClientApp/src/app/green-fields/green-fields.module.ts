@@ -13,7 +13,7 @@ import { GreenFieldsComponent, DialogOverviewExampleDialog } from './green-field
 import { GreenFieldsService } from '../service/green-fields/green-fields.service';
 import { MatDialogModule, MatListModule } from "@angular/material";
 import { MatFormFieldModule} from '@angular/material/form-field';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 export const appRoutes: Routes = [
   { path: '', component: GreenFieldsComponent, data: { animation: 'googlemap' } },
 
@@ -34,6 +34,7 @@ export function highlightJsFactory(): any {
     MatFormFieldModule,
     HttpClientModule,
     MatListModule,
+    MatExpansionModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAXTJwhYqJ6Pc7VXGRMTv40N1WRLqzuSNs'
     }),

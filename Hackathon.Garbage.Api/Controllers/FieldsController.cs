@@ -23,10 +23,10 @@ namespace Hackathon.Garbage.Dal.Controllers
         }
 
         [HttpGet("GetAll")]
-        public ActionResult<List<FieldEntity>> GetAll()
+        public async Task<ActionResult> GetAll()
         {
             
-            var fields = _fieldsRepository.GetAll();
+            var fields =await _fieldsRepository.GetAll();
             return Ok(fields);
         }
 
@@ -35,6 +35,8 @@ namespace Hackathon.Garbage.Dal.Controllers
         {
             try
             {
+
+
                 return Ok(_fieldsRepository.CreateOrUpdate(fieldEntity));
             }
             catch (ArgumentException)
