@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Hackathon.Garbage.Api.Hubs;
+using Hackathon.Garbage.Dal.Hubs;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Hackathon.Garbage.Api.Controllers
+namespace Hackathon.Garbage.Dal.Controllers
 {
     [EnableCors("CorsPolicy")]
     [Route("api/[controller]")]

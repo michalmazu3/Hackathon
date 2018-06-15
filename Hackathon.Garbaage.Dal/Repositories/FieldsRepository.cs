@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using AutoMapper;
 using Hackathon.Garbage.Dal.DbContexts;
 using Hackathon.Garbage.Dal.Entities;
+using Hackathon.Garbage.Dal.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hackathon.Garbage.Dal.Repositories
 {
     public class FieldsRepository : BaseRepository, IFieldsRepository
     {
+        private readonly IMapper _mapper;
+
         public FieldsRepository(
-            FloraDbContext floraDbContext
+            FloraDbContext floraDbContext,
+            IMapper mapper
             ) : base(floraDbContext)
         {
+            _mapper = mapper;
         }
 
         public int CreateOrUpdate(FieldEntity fieldEntity)
@@ -31,24 +37,36 @@ namespace Hackathon.Garbage.Dal.Repositories
                 throw new ArgumentNullException();
         }
 
-        public async Task<List<FieldEntity>> GetAll()
+        public List<FieldBllModel> GetAll()
         {
-            try
+            var data = _floraDbContext.
+                Fields.
+                //Include(x => x.Cordinates).
+                //Include(x => x.Orders).
+                ToListAsync().Result;
+            var fieldIds = data.Select(x => x.Id).Distinct().ToList();
+            var cordninates = _floraDbContext.Set<CordinatesEntity>().
+                Where(x => fieldIds.Contains(x.FieldId)).
+                ToList();
+            var orders = _floraDbContext.Orders.
+                Where(x => fieldIds.Contains(x.FieldId)).
+                ToList();
+            foreach(var entry in fieldIds)
             {
-                var result =await _floraDbContext.
-                            Fields.
-                            Include(x => x.Cordinates).
-                            Include(x => x.Orders).
-                            ToListAsync();
-
-                return result;
+                var field = data.FirstOrDefault(x => x.Id == entry);
+                if(field != null)
+                {
+                    var cords = cordninates.Where(x => x.FieldId == entry).Select(x => { x.Field = null; return x; }).ToList();
+                    var os = orders.Where(x => x.FieldId == entry).ToList();
+                    if (cords != null)
+                        field.Cordinates.AddRange(cords);
+                    if (os != null)
+                        field.Orders.AddRange(os);
+                }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
+            
+            var result = _mapper.Map<List<FieldBllModel>>(data);
+            return result;
         }
     }
 }

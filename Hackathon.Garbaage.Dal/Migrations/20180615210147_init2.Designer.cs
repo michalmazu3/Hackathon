@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hackathon.Garbage.Dal.Migrations
 {
     [DbContext(typeof(FloraDbContext))]
-    [Migration("20180615192010_init")]
-    partial class init
+    [Migration("20180615210147_init2")]
+    partial class init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,11 +31,11 @@ namespace Hackathon.Garbage.Dal.Migrations
 
                     b.Property<decimal>("lat")
                         .HasColumnName("Latitude")
-                        .HasColumnType("decimal(8,8)");
+                        .HasColumnType("decimal(18,8)");
 
                     b.Property<decimal>("lng")
                         .HasColumnName("Longitude ")
-                        .HasColumnType("decimal(8,8)");
+                        .HasColumnType("decimal(18,8)");
 
                     b.HasKey("Id");
 
@@ -101,11 +101,17 @@ namespace Hackathon.Garbage.Dal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Comment");
+
+                    b.Property<int>("FieldId");
+
                     b.Property<int>("Score");
 
                     b.Property<string>("User");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FieldId");
 
                     b.ToTable("Ratings");
                 });
@@ -127,6 +133,14 @@ namespace Hackathon.Garbage.Dal.Migrations
 
                     b.HasOne("Hackathon.Garbage.Dal.Entities.FieldEntity", "Field")
                         .WithMany("Orders")
+                        .HasForeignKey("FieldId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Hackathon.Garbage.Dal.Entities.RatingEntity", b =>
+                {
+                    b.HasOne("Hackathon.Garbage.Dal.Entities.FieldEntity", "Field")
+                        .WithMany("Ratings")
                         .HasForeignKey("FieldId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

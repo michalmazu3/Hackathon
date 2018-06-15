@@ -7,7 +7,7 @@ using Hackathon.Garbage.Dal.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Hackathon.Garbage.Api.Controllers
+namespace Hackathon.Garbage.Dal.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
