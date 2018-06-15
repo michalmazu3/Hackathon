@@ -51,13 +51,19 @@ namespace Hackathon.Garbage.Dal.Repositories
             var orders = _floraDbContext.Orders.
                 Where(x => fieldIds.Contains(x.FieldId)).
                 ToList();
+
+
+
             foreach(var entry in fieldIds)
             {
                 var field = data.FirstOrDefault(x => x.Id == entry);
                 if(field != null)
                 {
                     var cords = cordninates.Where(x => x.FieldId == entry).Select(x => { x.Field = null; return x; }).ToList();
-                    var os = orders.Where(x => x.FieldId == entry).ToList();
+
+
+
+                    var os = orders.Where(x => x.FieldId == entry).Select(x=> { x.Field = null; return x; }).ToList();
                     if (cords != null)
                         field.Cordinates.AddRange(cords);
                     if (os != null)
