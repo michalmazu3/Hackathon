@@ -70,13 +70,13 @@ namespace Hackathon.Garbage.Dal.Repositories
                     if (field != null)
                     {
                         var cords = cordninates.Where(x => x.FieldId == entry).Select(x => { x.Field = null; return x; }).ToList();
-                        var os = orders.Where(x => x.FieldId == entry).ToList();
-                        var rats = ratings.Where(x => x.FieldId == entry).ToList();
+                        var os = orders.Where(x => x.FieldId == entry).Select(x => { x.Field = null; return x; }).ToList();
+                        var rats = ratings.Where(x => x.FieldId == entry).Select(x => { x.Field = null; return x; }).ToList();
                         if (cords != null)
                             field.Cordinates.AddRange(cords);
-                        if (os != null)
+                        if (os != null && os.Any())
                             field.Orders.AddRange(os);
-                        if (rats != null)
+                        if (rats != null && rats.Any())
                             field.Ratings.AddRange(rats);
                     }
                 }
