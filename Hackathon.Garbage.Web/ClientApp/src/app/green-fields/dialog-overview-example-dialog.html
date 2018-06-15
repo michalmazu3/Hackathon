@@ -47,17 +47,35 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-list>
-      <h3>Historia prac:</h3>
+      <h3>oceny mieszkańców</h3>
       <mat-list-item *ngFor="let rating of field.ratings">
-        <h3 matLine>Odena 1-5: {{rating.score}} </h3>
+        <h3 matLine>Osena 1-5: {{rating.score}} </h3>
         <p matLine>Osoba: {{rating.user}} </p>
+        <p matLine class="demo-2">Komentarz: {{rating.comment}}</p>
+
 
       </mat-list-item>
     </mat-list>
-
+    d
   </mat-expansion-panel>
 
+  <mat-expansion-panel (opened)="basicPanelOpenState = true"
+                       (closed)="basicPanelOpenState = false">
 
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Zaplanuj prace na działce
+      </mat-panel-title>
+      <mat-panel-description>
+       zaplanuj okreslone prace  i dodaj wykonawce
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <h3>Zaplanuj prace:</h3>
+      gfghfgh
+    </mat-list>
+    
+  </mat-expansion-panel>
   <button class="mat-raised-button" (click)="close()">Zamknij</button>
   <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
 </mat-accordion>
