@@ -51,54 +51,21 @@ namespace Hackathon.Garbage.Dal.Repositories
             {
                 var data = _floraDbContext.
                         Fields.
-                        //Include(x => x.Cordinates).
-                        //Include(x => x.Orders).
+                        Include(x => x.Cordinates).
+                        Include(x => x.Orders).
                         ToListAsync().Result;
-                var fieldIds = data.Select(x => x.Id).Distinct().ToList();
-                var cordninates = _floraDbContext.Set<CordinatesEntity>().
-                    Where(x => fieldIds.Contains(x.FieldId)).
-                    ToList();
-                var orders = _floraDbContext.Orders.
-                    Include(x => x.Executive).
-                    Where(x => fieldIds.Contains(x.FieldId)).
-                    ToList();
-                var ratings = _floraDbContext.Ratings.
-                    Where(x => fieldIds.Contains(x.FieldId)).
-                    ToList();
-                foreach (var entry in fieldIds)
-                {
-                    var field = data.FirstOrDefault(x => x.Id == entry);
-                    if (field != null)
-                    {
-                        var cords = cordninates.Where(x => x.FieldId == entry).
-                            Select(x =>
-                            {
-                                x.Field = null;
-                                return x;
-                            }).ToList();
-                        var os = orders.Where(x => x.FieldId == entry).
-                            Select(x =>
-                            {
-                                x.Field = null;
-                                if (x.Executive != null)
-                                    x.Executive.Orders = null;
-                                return x;
-                            }).ToList();
-                        var rats = ratings.Where(x => x.FieldId == entry).
-                            Select(x =>
-                            {
-                                x.Field = null;
-                                return x;
-                            }).ToList();
-                        if (cords != null)
-                            field.Cordinates.AddRange(cords);
-                        if (os != null && os.Any())
-                            field.Orders.AddRange(os);
-                        if (rats != null && rats.Any())
-                            field.Ratings.AddRange(rats);
-                    }
-                }
-
+                data = data.Select(x =>
+                        {
+                            if (x.Cordinates != null)
+                                x.Cordinates = x.Cordinates.Select(y => { y.Field = null; return y; }).ToList();
+                            if (x.Orders != null)
+                                x.Orders = x.Orders.Select(y => { y.Field = null; if (y.Executive != null) y.Executive.Orders = null; return y; }).ToList();
+                            if (x.Ratings != null)
+                                x.Ratings = x.Ratings.Select(y => { y.Field = null; return y; }).ToList();
+                            return x;
+                        }).
+                        ToList();
+                
                 var result = _mapper.Map<List<FieldBllModel>>(data);
                 return result;
             }
