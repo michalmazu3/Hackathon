@@ -16,10 +16,11 @@ namespace Hackathon.Garbage.Dal.Entities
         public OrderEntity(FieldEntity field)
         {
             //Field = field;
-            Id = id++;
+            //Id = id++;
             FieldId = field.Id;
             DeadlineDate = new DateTime(2018, 06, 11);
             FinishDate = new DateTime(2018, 06, 10);
+            Status = OrderStatus.FINISHED;
         }
 
         public int Id { get; set; }
@@ -29,5 +30,12 @@ namespace Hackathon.Garbage.Dal.Entities
         public ExecutiveEntity Executive { get; set; }
         public DateTime DeadlineDate { get; set; }
         public DateTime FinishDate { get; set; }
+        public OrderStatus Status { get; set; }
+
+    }
+    public enum OrderStatus
+    {
+        FINISHED,
+        IN_PROGRESS
     }
 }

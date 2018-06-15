@@ -4,14 +4,16 @@ using Hackathon.Garbage.Dal.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hackathon.Garbage.Dal.Migrations
 {
     [DbContext(typeof(FloraDbContext))]
-    partial class FloraDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180615181442_init6")]
+    partial class init6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,6 +113,7 @@ namespace Hackathon.Garbage.Dal.Migrations
                     b.HasOne("Hackathon.Garbage.Dal.Entities.FieldEntity", "Field")
                         .WithMany("Cordinates")
                         .HasForeignKey("FieldId")
+                        .HasConstraintName("FieldId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -21,8 +21,7 @@ namespace Hackathon.Garbage.Dal.DbContexts
         {
             modelBuilder.Entity<FieldEntity>().
                 HasMany(x => x.Cordinates).
-                WithOne(x => x.Field).
-                HasConstraintName("FieldId");
+                WithOne(x => x.Field);
         }
 
         public DbSet<CordinatesEntity> Cordinates { get; set; }

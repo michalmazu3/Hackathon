@@ -11,7 +11,7 @@ namespace Hackathon.Garbage.Dal.Entities
 
         public CordinatesEntity()
         {
-            Id = index++;
+            //Id = index++;
         }
 
         public int Id { get; set; }
