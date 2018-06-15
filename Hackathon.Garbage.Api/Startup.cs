@@ -24,7 +24,8 @@ namespace Hackathon.Garbage.Api
         {
 
             services.AddDbContext<FloraDbContext>(options =>
-                          options.UseSqlServer("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = D:\\dev\\hackathon\\Database\\FloraDb.mdf;Integrated Security=True")
+                          //options.UseSqlServer("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = D:\\dev\\hackathon\\Database\\FloraDb.mdf;Integrated Security=True")
+                          options.UseSqlServer(Configuration.GetConnectionString("FreeMsDb"))
                           );
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

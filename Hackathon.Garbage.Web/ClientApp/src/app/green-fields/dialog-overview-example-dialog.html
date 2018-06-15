@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <mat-accordion>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -15,34 +10,28 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <h2 mat-dialog-title>{{field.name}}</h2>
 
-    <mat-dialog-content>
+    <!--<h4 class="mat-subheading-2 center-align">Historia prac:</h4>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="80px">-->
+    <!-- two line list -->
+    <!-- three line list -->
+    <mat-list>
+      <h3>Historia prac:</h3>
+      <mat-list-item *ngFor="let order of field.orders">
+        <h3 matLine>Wykonawca: {{order.executive.name}} </h3>
+        <p matLine>Termin do: {{order.deadlineDate}} </p>
+        <p matLine>Zakończenie zlecenia: {{order.finishDate}} </p>
+        <p matLine class="demo-2" *ngIf="order.status==0">Status: zakończone</p>
+        <p matLine class="demo-2" *ngIf="order.status==1">Status: w trakcie</p>
+
+      </mat-list-item>
+    </mat-list>
+
+    <!--</div>-->
 
 
-      <!--<h4 class="mat-subheading-2 center-align">Historia prac:</h4>
-      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="80px">-->
-      <!-- two line list -->
-      <!-- three line list -->
-      <mat-list>
-        <h3>Historia prac:</h3>
-        <mat-list-item *ngFor="let order of field.orders">
-          <h3 matLine>Wykonawca: {{order.executive.name}} </h3>
-          <p matLine>Termin do: {{order.deadlineDate}} </p>
-          <p matLine>Zakończenie zlecenia: {{order.finishDate}} </p>
-          <p matLine class="demo-2" *ngIf="order.status==0">Status: zakończone</p>
-          <p matLine class="demo-2" *ngIf="order.status==1">Status: w trakcie</p>
 
-        </mat-list-item>
-      </mat-list>
 
-      <!--</div>-->
-
-    </mat-dialog-content>
-
-    <mat-dialog-actions>
-
-    </mat-dialog-actions>
   </mat-expansion-panel>
 
 
@@ -57,7 +46,15 @@
         Lista oocen i komentarzy miezkaców na temat tego miejsca
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
+    <mat-list>
+      <h3>Historia prac:</h3>
+      <mat-list-item *ngFor="let rating of field.ratings">
+        <h3 matLine>Odena 1-5: {{rating.score}} </h3>
+        <p matLine>Osoba: {{rating.user}} </p>
+
+      </mat-list-item>
+    </mat-list>
+
   </mat-expansion-panel>
 
 

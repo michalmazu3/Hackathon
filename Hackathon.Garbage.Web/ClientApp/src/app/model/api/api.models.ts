@@ -3,6 +3,8 @@ export class Field {
   name: string;
   cordinates: Cordinate[];
   orders: Order[];
+  ratings: Rating[];
+
 }
 
 export class Order {
@@ -10,7 +12,7 @@ export class Order {
   fieldId: number;
   field?: any;
   executiveId: number;
-  executive?: any;
+  executive?: Executive;
   deadlineDate: string;
   finishDate: string;
 }
@@ -19,5 +21,19 @@ export class Cordinate {
   id: number;
   latitude: number;
   longitude: number;
-  field?: any;
+  field?: Field;
+}
+export class Rating {
+  id: number;
+  score: number;
+  user: string;
+  fieldId: number;
+  field?: Field;
+
+}
+
+export class Executive {
+  id: number;
+  name: string;
+
 }

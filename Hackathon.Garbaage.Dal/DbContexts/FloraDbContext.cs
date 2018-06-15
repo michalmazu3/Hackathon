@@ -22,6 +22,16 @@ namespace Hackathon.Garbage.Dal.DbContexts
             modelBuilder.Entity<FieldEntity>().
                 HasMany(x => x.Cordinates).
                 WithOne(x => x.Field);
+            modelBuilder.Entity<FieldEntity>().
+                HasMany(x => x.Orders).
+                WithOne(x => x.Field);
+
+            modelBuilder.Entity<OrderEntity>().
+                HasOne(x => x.Executive).
+                WithMany(x => x.Orders);
+
+            modelBuilder.Entity<CordinatesEntity>().Property(o => o.lat).HasColumnType("decimal(8,8)");
+            modelBuilder.Entity<CordinatesEntity>().Property(o => o.lng).HasColumnType("decimal(8,8)");
         }
 
         public DbSet<CordinatesEntity> Cordinates { get; set; }
