@@ -39,7 +39,17 @@ namespace Hackathon.Garbage.Api.Controllers
                 Name = "działka 2"
             });
             fields.ForEach(x => {
-                x.Orders.Add(new OrderEntity(x));
+
+                List<ExecutiveEntity> ex = new List<ExecutiveEntity>()
+                {
+                    new ExecutiveEntity() {Name = "Firma 1"},
+                new ExecutiveEntity() { Name = "Firma 2" },
+                new ExecutiveEntity() { Name = "Firma 3" }
+
+                };
+              
+              
+                x.Orders.Add(new OrderEntity(x) { Status = OrderStatus.IN_PROGRESS, Executive = new ExecutiveEntity() { Name = "Firma 1" } });
             });
             return Ok(fields);
         }

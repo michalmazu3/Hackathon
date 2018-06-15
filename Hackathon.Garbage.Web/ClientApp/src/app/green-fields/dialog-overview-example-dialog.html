@@ -1,26 +1,67 @@
-<h2 mat-dialog-title>{{field.name}}</h2>
 
-<mat-dialog-content>
-   
-  <div fxFlex.xs="100" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50">
-    <h4 class="mat-subheading-2 center-align">Multi-line lists</h4>
-     <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="80px">
+
+
+
+
+
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Historia prac
+      </mat-panel-title>
+      <mat-panel-description>
+        Lista aktualnych i historycznych prac
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <h2 mat-dialog-title>{{field.name}}</h2>
+
+    <mat-dialog-content>
+
+
+      <!--<h4 class="mat-subheading-2 center-align">Historia prac:</h4>
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="80px">-->
       <!-- two line list -->
-       <!-- three line list -->
+      <!-- three line list -->
       <mat-list>
-        <h3>Three line</h3>
-        <!--<mat-list-item *ngFor="let message of messages">
-          <h3 matLine> {{message.from}} </h3>
-          <p matLine> {{message.subject}} </p>
-          <p matLine class="demo-2"> {{message.content}} </p>
-        </mat-list-item>-->
+        <h3>Historia prac:</h3>
+        <mat-list-item *ngFor="let order of field.orders">
+          <h3 matLine>Wykonawca: {{order.executive.name}} </h3>
+          <p matLine>Termin do: {{order.deadlineDate}} </p>
+          <p matLine>Zakończenie zlecenia: {{order.finishDate}} </p>
+          <p matLine class="demo-2" *ngIf="order.status==0">Status: zakończone</p>
+          <p matLine class="demo-2" *ngIf="order.status==1">Status: w trakcie</p>
+
+        </mat-list-item>
       </mat-list>
-    </div>
-  </div>
 
-</mat-dialog-content>
+      <!--</div>-->
 
-<mat-dialog-actions>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+
+    </mat-dialog-actions>
+  </mat-expansion-panel>
+
+
+  <mat-expansion-panel (opened)="basicPanelOpenState = true"
+                       (closed)="basicPanelOpenState = false">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Oceny mieszkaców
+      </mat-panel-title>
+      <mat-panel-description>
+        Lista oocen i komentarzy miezkaców na temat tego miejsca
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>I'm visible because I am open</p>
+  </mat-expansion-panel>
+
+
   <button class="mat-raised-button" (click)="close()">Zamknij</button>
   <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
-</mat-dialog-actions>
+</mat-accordion>
+
