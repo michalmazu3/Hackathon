@@ -23,7 +23,7 @@ namespace Hackathon.Garbage.Api
         {
 
             services.AddDbContext<FloraDbContext>(options =>
-                          options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;ConnectRetryCount=0")
+                          options.UseSqlServer("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = D:\\dev\\hackathon\\Database\\FloraDb.mdf;Integrated Security=True")
                           );
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
