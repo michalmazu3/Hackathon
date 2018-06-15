@@ -8,6 +8,6 @@ namespace Hackathon.Garbage.Dal.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<decimal> Cordinates { get; set; }
+        public List<float> Cordinates { get; set; }
     }
 }

@@ -3,9 +3,9 @@
     <div class="mat-elevation-z1 map-container" fxFlexFill>
       <agm-map [latitude]="lat" [longitude]="lng" [zoom]="13" [ngStyle]="{ 'height': height }">
         <!--<agm-polygon>
-    <agm-polyline-point *ngFor="let vertex of polylines" [latitude]="vertex.latitude" [longitude]="vertex.longitude">
-    </agm-polyline-point>
-  </agm-polygon>-->
+          <agm-polyline-point *ngFor="let vertex of polylines" [latitude]="vertex.latitude" [longitude]="vertex.longitude">
+          </agm-polyline-point>
+        </agm-polygon>-->
 
         <agm-polygon [editable]="true" [polyDraggable]="true" [paths]="paths"></agm-polygon>
 
