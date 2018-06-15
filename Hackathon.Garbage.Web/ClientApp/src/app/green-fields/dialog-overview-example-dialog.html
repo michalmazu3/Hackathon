@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>{{field.name}}</h2>
+
+<mat-dialog-content>
+   
+  <div fxFlex.xs="100" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50">
+    <h4 class="mat-subheading-2 center-align">Multi-line lists</h4>
+     <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="80px">
+      <!-- two line list -->
+       <!-- three line list -->
+      <mat-list>
+        <h3>Three line</h3>
+        <!--<mat-list-item *ngFor="let message of messages">
+          <h3 matLine> {{message.from}} </h3>
+          <p matLine> {{message.subject}} </p>
+          <p matLine class="demo-2"> {{message.content}} </p>
+        </mat-list-item>-->
+      </mat-list>
+    </div>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="close()">Zamknij</button>
+  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+</mat-dialog-actions>

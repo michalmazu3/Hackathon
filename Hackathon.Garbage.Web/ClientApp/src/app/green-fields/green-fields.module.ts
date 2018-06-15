@@ -9,8 +9,10 @@ import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
 import * as hljsTypescript from 'highlight.js/lib/languages/typescript';
  import { Routes, RouterModule } from '@angular/router';
 import { ProblemNotificationService } from '../service/problem-notification/problem-notification.service';
-import { GreenFieldsComponent } from './green-fields.component';
+import { GreenFieldsComponent, DialogOverviewExampleDialog } from './green-fields.component';
 import { GreenFieldsService } from '../service/green-fields/green-fields.service';
+import { MatDialogModule, MatListModule } from "@angular/material";
+import { MatFormFieldModule} from '@angular/material/form-field';
 
 export const appRoutes: Routes = [
   { path: '', component: GreenFieldsComponent, data: { animation: 'googlemap' } },
@@ -28,7 +30,10 @@ export function highlightJsFactory(): any {
     FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
     HttpClientModule,
+    MatListModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAXTJwhYqJ6Pc7VXGRMTv40N1WRLqzuSNs'
     }),
@@ -41,9 +46,12 @@ export function highlightJsFactory(): any {
   ],
 
   declarations: [
-    GreenFieldsComponent],
+    GreenFieldsComponent, DialogOverviewExampleDialog],
 
   exports: [
+  ],
+  entryComponents: [
+    DialogOverviewExampleDialog
   ],
   providers: [
     { provide: 'problemNotificationService', useClass: ProblemNotificationService },

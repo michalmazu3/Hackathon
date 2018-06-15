@@ -8,7 +8,8 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr'
 import { VertexModel } from '../models/vertex.model';
 import { LatLngLiteral } from '../models/google-maps-types';
 import { Field, Cordinate, Order } from '../model/api/api.models';
-
+import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA, MatFormField, MatDialogActions, MatDialogContent, MatInput, MatList } from '@angular/material';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-green-fields',
@@ -24,34 +25,21 @@ export class GreenFieldsComponent implements OnInit {
   height: string = '500px';
   fields: Field[];
 
-  paths: Array<LatLngLiteral> = [
-    { lat: 25.774, lng: -80.190 },
-    { lat: 18.466, lng: -66.118 },
-    { lat: 32.321, lng: -64.757 },
-    { lat: 25.774, lng: -80.190 }
-
-  ]
+ 
 
 
   @ViewChild(AgmMap) private myMap: AgmMap;
   @ViewChild('mapContainer') mapContainer: any;
   constructor(private mapsAPILoader: MapsAPILoader, @Inject('problemNotificationService') private problemNotificationService,
-    @Inject('greenFieldsService') private greenFieldsService
-
+    @Inject('greenFieldsService') private greenFieldsService, public dialog: MatDialog
   ) {
   }
 
   ngOnInit() {
-
-
     this.greenFieldsService.getList().subscribe(res => {
       console.log(res);
       this.fields = res;
     });
-
-
-
-
 
     const connection = new HubConnectionBuilder()
       .withUrl("http://localhost:60464/PhotoNotification")
@@ -80,6 +68,7 @@ export class GreenFieldsComponent implements OnInit {
   }
 
   clickField(field: Field) {
+    this.openDialog(field);
     console.log(field.name);
 
   }
@@ -87,7 +76,66 @@ export class GreenFieldsComponent implements OnInit {
     // let h = this.mapContainer.nativeElement.offsetHeight - 10;
     // this.height = String(h) + 'px';
   }
+
+
+  test: string = "dfsdfsf";
+  openDialog(field :Field) {
+
+
+    const dialogConfig = new MatDialogConfig();
+    //dialogConfig.minHeight = '200px',
+    //  dialogConfig.minWidth = '400px',
+
+      dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      field: field
+    };
+
+    this.dialog.open(DialogOverviewExampleDialog, dialogConfig);
+  }
+
   private convertStringToNumber(value: string): number {
     return +value;
+  }
+}
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html'
+})
+export class DialogOverviewExampleDialog {
+
+  form: FormGroup;
+  description: string;
+
+
+  field: Field;
+
+
+  constructor(
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) data) {
+
+    this.field = data.field;
+    this.description = data.description;
+
+ 
+  }
+
+  ngOnInit() {
+    this.form = this.fb.group({
+      description: [this.description, []],
+
+    });
+  }
+
+  save() {
+    this.dialogRef.close(this.form.value);
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 }
