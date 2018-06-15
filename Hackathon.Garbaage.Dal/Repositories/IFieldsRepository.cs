@@ -1,11 +1,12 @@
 ﻿using Hackathon.Garbage.Dal.Entities;
+using Hackathon.Garbage.Dal.Models;
 using System.Collections.Generic;
 
 namespace Hackathon.Garbage.Dal.Repositories
 {
     public interface IFieldsRepository
     {
-        List<FieldEntity> GetAll();
+        List<FieldBllModel> GetAll();
         int CreateOrUpdate(FieldEntity fieldEntity);
     }
 }

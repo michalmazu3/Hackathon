@@ -35,27 +35,13 @@ namespace Hackathon.Garbage.Dal.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ratings",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Score = table.Column<int>(nullable: false),
-                    User = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ratings", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Cordinates",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Latitude = table.Column<decimal>(type: "decimal(8,8)", nullable: false),
-                    Longitude = table.Column<decimal>(name: "Longitude ", type: "decimal(8,8)", nullable: false),
+                    Latitude = table.Column<decimal>(type: "decimal(18,8)", nullable: false),
+                    Longitude = table.Column<decimal>(name: "Longitude ", type: "decimal(18,8)", nullable: false),
                     FieldId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -98,6 +84,28 @@ namespace Hackathon.Garbage.Dal.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Ratings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Score = table.Column<int>(nullable: false),
+                    User = table.Column<string>(nullable: true),
+                    FieldId = table.Column<int>(nullable: false),
+                    Comment = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ratings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Ratings_Fields_FieldId",
+                        column: x => x.FieldId,
+                        principalTable: "Fields",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Cordinates_FieldId",
                 table: "Cordinates",
@@ -111,6 +119,11 @@ namespace Hackathon.Garbage.Dal.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_FieldId",
                 table: "Orders",
+                column: "FieldId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ratings_FieldId",
+                table: "Ratings",
                 column: "FieldId");
         }
 

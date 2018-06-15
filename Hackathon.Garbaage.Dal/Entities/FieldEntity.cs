@@ -20,5 +20,6 @@ namespace Hackathon.Garbage.Dal.Entities
 
         public virtual List<CordinatesEntity> Cordinates { get; set; }
         public virtual List<OrderEntity> Orders { get; set; }
+        public virtual List<RatingEntity> Ratings { get; set; }
     }
 }

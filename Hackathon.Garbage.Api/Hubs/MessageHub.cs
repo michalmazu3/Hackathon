@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hackathon.Garbage.Api.Hubs
+namespace Hackathon.Garbage.Dal.Hubs
 {
     public class MessageHub : Hub
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Hackathon.Garbage.Api.Controllers
+namespace Hackathon.Garbage.Dal.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

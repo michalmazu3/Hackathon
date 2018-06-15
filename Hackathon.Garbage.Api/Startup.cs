@@ -1,4 +1,5 @@
-﻿using Hackathon.Garbage.Api.Hubs;
+﻿using AutoMapper;
+using Hackathon.Garbage.Dal.Hubs;
 using Hackathon.Garbage.Dal.DbContexts;
 using Hackathon.Garbage.Dal.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Hackathon.Garbage.Api
+namespace Hackathon.Garbage.Dal
 {
     public class Startup
     {
@@ -40,6 +41,7 @@ namespace Hackathon.Garbage.Api
            }));
 
             services.AddSignalR();
+            services.AddAutoMapper();
 
             services.AddScoped<IFieldsRepository, FieldsRepository>();
         }

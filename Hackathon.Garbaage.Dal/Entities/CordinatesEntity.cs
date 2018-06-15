@@ -7,7 +7,6 @@ namespace Hackathon.Garbage.Dal.Entities
 {
     public class CordinatesEntity : IEntity
     {
-        private static int index = 1;
 
         public CordinatesEntity()
         {

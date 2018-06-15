@@ -18,7 +18,7 @@ namespace Hackathon.Garbage.Dal.DbContexts
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {/*
             modelBuilder.Entity<FieldEntity>().
                 HasMany(x => x.Cordinates).
                 WithOne(x => x.Field);
@@ -30,8 +30,12 @@ namespace Hackathon.Garbage.Dal.DbContexts
                 HasOne(x => x.Executive).
                 WithMany(x => x.Orders);
 
-            modelBuilder.Entity<CordinatesEntity>().Property(o => o.lat).HasColumnType("decimal(8,8)");
-            modelBuilder.Entity<CordinatesEntity>().Property(o => o.lng).HasColumnType("decimal(8,8)");
+            modelBuilder.Entity<RatingEntity>().
+                HasOne(x => x.Field).
+                WithMany(x => x.Ratings);*/
+
+            modelBuilder.Entity<CordinatesEntity>().Property(o => o.lat).HasColumnType("decimal(18,8)");
+            modelBuilder.Entity<CordinatesEntity>().Property(o => o.lng).HasColumnType("decimal(18,8)");
         }
 
         public DbSet<CordinatesEntity> Cordinates { get; set; }
