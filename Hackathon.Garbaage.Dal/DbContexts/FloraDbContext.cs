@@ -19,8 +19,12 @@ namespace Hackathon.Garbage.Dal.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<FieldEntity>().
+                HasMany(x => x.Cordinates).
+                WithOne(x => x.Field);
         }
 
+        public DbSet<CordinatesEntity> Cordinates { get; set; }
         public DbSet<FieldEntity> Fields { get; set; }
         public DbSet<ExecutiveEntity> Executives { get; set; }
         public DbSet<OrderEntity> Orders { get; set; }
