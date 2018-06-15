@@ -29,7 +29,7 @@ namespace Hackathon.Garbage.Dal.Entities
         public int ExecutiveId { get; set; }
         public virtual ExecutiveEntity Executive { get; set; }
         public DateTime DeadlineDate { get; set; }
-        public DateTime FinishDate { get; set; }
+        public DateTime? FinishDate { get; set; }
         public OrderStatus Status { get; set; }
 
     }

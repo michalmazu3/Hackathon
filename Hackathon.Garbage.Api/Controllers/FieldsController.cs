@@ -23,7 +23,7 @@ namespace Hackathon.Garbage.Dal.Controllers
         }
 
         [HttpGet("GetAll")]
-        public  ActionResult GetAll()
+        public ActionResult GetAll()
         {
             
             var fields = _fieldsRepository.GetAll();

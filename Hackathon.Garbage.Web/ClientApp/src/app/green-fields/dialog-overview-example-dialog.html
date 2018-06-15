@@ -47,14 +47,16 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-list>
-      <h3>Historia prac:</h3>
+      <h3>oceny mieszkańc</h3>
       <mat-list-item *ngFor="let rating of field.ratings">
-        <h3 matLine>Odena 1-5: {{rating.score}} </h3>
+        <h3 matLine>Osena 1-5: {{rating.score}} </h3>
         <p matLine>Osoba: {{rating.user}} </p>
+        <p matLine class="demo-2">Komentarz: {{rating.comment}}</p>
+
 
       </mat-list-item>
     </mat-list>
-
+    d
   </mat-expansion-panel>
 
 
