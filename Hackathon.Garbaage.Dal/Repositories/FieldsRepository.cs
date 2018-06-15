@@ -26,12 +26,20 @@ namespace Hackathon.Garbage.Dal.Repositories
         {
             if (fieldEntity != null)
             {
-                if (fieldEntity.Cordinates != null)
-                    _floraDbContext.AddRange(fieldEntity.Cordinates);
-                if (fieldEntity.Orders != null)
-                    _floraDbContext.AddRange(fieldEntity.Orders);
-                _floraDbContext.Add(fieldEntity);
-                return _floraDbContext.SaveChanges();
+                try
+                {
+                    if (fieldEntity.Cordinates != null)
+                        _floraDbContext.AddRange(fieldEntity.Cordinates);
+                    if (fieldEntity.Orders != null)
+                        _floraDbContext.AddRange(fieldEntity.Orders);
+                    _floraDbContext.Add(fieldEntity);
+                    return _floraDbContext.SaveChanges();
+                }
+                catch (Exception ex )
+                {
+
+                    throw ex;
+                }
             }
             else
                 throw new ArgumentNullException();
@@ -39,34 +47,48 @@ namespace Hackathon.Garbage.Dal.Repositories
 
         public List<FieldBllModel> GetAll()
         {
-            var data = _floraDbContext.
-                Fields.
-                //Include(x => x.Cordinates).
-                //Include(x => x.Orders).
-                ToListAsync().Result;
-            var fieldIds = data.Select(x => x.Id).Distinct().ToList();
-            var cordninates = _floraDbContext.Set<CordinatesEntity>().
-                Where(x => fieldIds.Contains(x.FieldId)).
-                ToList();
-            var orders = _floraDbContext.Orders.
-                Where(x => fieldIds.Contains(x.FieldId)).
-                ToList();
-            foreach(var entry in fieldIds)
+            try
             {
-                var field = data.FirstOrDefault(x => x.Id == entry);
-                if(field != null)
+                var data = _floraDbContext.
+                        Fields.
+                        //Include(x => x.Cordinates).
+                        //Include(x => x.Orders).
+                        ToListAsync().Result;
+                var fieldIds = data.Select(x => x.Id).Distinct().ToList();
+                var cordninates = _floraDbContext.Set<CordinatesEntity>().
+                    Where(x => fieldIds.Contains(x.FieldId)).
+                    ToList();
+                var orders = _floraDbContext.Orders.
+                    Where(x => fieldIds.Contains(x.FieldId)).
+                    ToList();
+                var ratings = _floraDbContext.Ratings.
+                    Where(x => fieldIds.Contains(x.FieldId)).
+                    ToList();
+                foreach (var entry in fieldIds)
                 {
-                    var cords = cordninates.Where(x => x.FieldId == entry).Select(x => { x.Field = null; return x; }).ToList();
-                    var os = orders.Where(x => x.FieldId == entry).ToList();
-                    if (cords != null)
-                        field.Cordinates.AddRange(cords);
-                    if (os != null)
-                        field.Orders.AddRange(os);
+                    var field = data.FirstOrDefault(x => x.Id == entry);
+                    if (field != null)
+                    {
+                        var cords = cordninates.Where(x => x.FieldId == entry).Select(x => { x.Field = null; return x; }).ToList();
+                        var os = orders.Where(x => x.FieldId == entry).ToList();
+                        var rats = ratings.Where(x => x.FieldId == entry).ToList();
+                        if (cords != null)
+                            field.Cordinates.AddRange(cords);
+                        if (os != null)
+                            field.Orders.AddRange(os);
+                        if (rats != null)
+                            field.Ratings.AddRange(rats);
+                    }
                 }
+
+                var result = _mapper.Map<List<FieldBllModel>>(data);
+                return result;
             }
-            
-            var result = _mapper.Map<List<FieldBllModel>>(data);
-            return result;
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

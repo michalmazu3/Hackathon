@@ -23,10 +23,10 @@ namespace Hackathon.Garbage.Dal.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<ActionResult> GetAll()
+        public  ActionResult GetAll()
         {
             
-            var fields =await _fieldsRepository.GetAll();
+            var fields = _fieldsRepository.GetAll();
             return Ok(fields);
         }
 
