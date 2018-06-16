@@ -13,6 +13,7 @@ namespace Hackathon.Garbage.Dal.Configurations
             CreateMap<FieldBllModel, FieldEntity>().ReverseMap();
             CreateMap<OrderBllModel, OrderEntity>().ReverseMap();
             CreateMap<RatingBllModel, RatingEntity>().ReverseMap();
+            CreateMap<AlertBllModel, AlertsEntity>().ReverseMap();
         }
     }
 }

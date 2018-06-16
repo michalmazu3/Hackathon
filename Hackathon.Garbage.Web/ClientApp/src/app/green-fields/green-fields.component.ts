@@ -151,8 +151,8 @@ export class DialogOverviewExampleDialog {
     this.alertForm = this.fb.group({
       title: ['', []],
       message: ['', []],
-      dateFrom: ['', []],
-      dateTo: ['', []]
+      startDate: ['', []],
+      endDate: ['', []]
 
     });
   }
