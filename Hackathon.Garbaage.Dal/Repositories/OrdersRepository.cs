@@ -25,8 +25,8 @@ namespace Hackathon.Garbage.Dal.Repositories
         {
             try
             {
-                var field = _floraDbContext.Fields.FirstOrDefault(x => x.Name == order.Field.Name);
-                var executive = _floraDbContext.Executives.FirstOrDefault(x => x.Name.Equals(order.Executive.Name));
+                var field = _floraDbContext.Fields.FirstOrDefault(x => x.Id == order.FieldId);
+                var executive = _floraDbContext.Executives.FirstOrDefault(x => x.Id == order.ExecutiveId);
 
                 if (field == null)
                     throw new KeyNotFoundException();
