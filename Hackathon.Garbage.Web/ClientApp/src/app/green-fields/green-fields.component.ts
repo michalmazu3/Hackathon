@@ -145,7 +145,7 @@ export class DialogOverviewExampleDialog {
     this.planExecutiveForm = this.fb.group({
       fieldId: [this.field.id],
       executiveId: ['', []],
-      deadlineDate: ['', []],
+      deadlineDate: [new Date(), []],
       status: [1]
     });
     this.alertForm = this.fb.group({
@@ -158,6 +158,8 @@ export class DialogOverviewExampleDialog {
   }
 
   planExecutive(): void {
+
+
     console.log(this.planExecutiveForm.value)
       this.greenFieldsService.createOrder(this.planExecutiveForm.value).subscribe(res => console.log("dodano"));
 
