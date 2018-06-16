@@ -159,12 +159,13 @@ export class DialogOverviewExampleDialog {
 
   planExecutive(): void {
     console.log(this.planExecutiveForm.value)
-    //  this.greenFieldsService.createOrder(this.planExecutiveForm.value).subscribe(res => console.log("dodano"));
+      this.greenFieldsService.createOrder(this.planExecutiveForm.value).subscribe(res => console.log("dodano"));
 
   }
 
   alerts(): void {
     console.log(this.alertForm.value)
+    this.greenFieldsService.createAlert(this.alertForm.value).subscribe(res => console.log("dodano"));
 
 
   }
