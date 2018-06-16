@@ -1,4 +1,18 @@
- make-scrollable {
+mat-list.make-scrollable {
   height: 200px; //Or any other height you wish
   overflow-y: scroll;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+
+.bl{
+
+  display:block;
 }

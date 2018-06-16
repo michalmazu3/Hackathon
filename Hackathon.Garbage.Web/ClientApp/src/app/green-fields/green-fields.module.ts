@@ -14,6 +14,11 @@ import { GreenFieldsService } from '../service/green-fields/green-fields.service
 import { MatDialogModule, MatListModule } from "@angular/material";
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
+
+import { MatButtonModule, MatNativeDateModule, MatInputModule, MatCard, MatCardContent, MatSelectModule, MatCardModule, MatOptionModule } from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import 'hammerjs';
+
 export const appRoutes: Routes = [
   { path: '', component: GreenFieldsComponent, data: { animation: 'googlemap' } },
 
@@ -34,6 +39,11 @@ export function highlightJsFactory(): any {
     MatFormFieldModule,
     HttpClientModule,
     MatListModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
+      MatNativeDateModule,
     MatExpansionModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAXTJwhYqJ6Pc7VXGRMTv40N1WRLqzuSNs'

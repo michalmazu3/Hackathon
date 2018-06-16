@@ -86,7 +86,10 @@ export class GreenFieldsComponent implements OnInit {
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.maxHeight = '200px',
-    dialogConfig.minWidth = '400px',
+      dialogConfig.minWidth = '400px',
+      dialogConfig.position = {
+        top: '5px'
+      };
 
       dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -110,6 +113,8 @@ export class GreenFieldsComponent implements OnInit {
 })
 export class DialogOverviewExampleDialog {
 
+  planExecutiveForm: FormGroup;
+  alertForm: FormGroup;
   form: FormGroup;
   description: string;
 
@@ -131,6 +136,24 @@ export class DialogOverviewExampleDialog {
   ngOnInit() {
     this.form = this.fb.group({
       description: [this.description, []],
+
+    });
+
+    this.planExecutiveForm = this.fb.group({
+      title: ['', []],
+      message: ['', []],
+      dateFrom: ['', []],
+      dateTo: ['', []]
+
+
+    });
+
+    this.alertForm = this.fb.group({
+      title: ['', []],
+      message: ['', []],
+      dateFrom: ['', []],
+      dateTo: ['', []]
+
 
     });
   }
