@@ -10,11 +10,13 @@ namespace Hackathon.Garbage.Dal.Models
     {
         public int Id { get; set; }
         public int FieldId { get; set; }
-        public virtual FieldBllModel Field { get; set; }
         public int ExecutiveId { get; set; }
-        public virtual ExecutiveBllModel Executive { get; set; }
         public DateTime DeadlineDate { get; set; }
         public DateTime FinishDate { get; set; }
         public OrderStatus Status { get; set; }
+
+
+        public FieldBllModel Field { get; set; }
+        public ExecutiveBllModel Executive { get; set; }
     }
 }

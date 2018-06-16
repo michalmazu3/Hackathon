@@ -45,5 +45,7 @@ namespace Hackathon.Garbage.Dal.DbContexts
         public DbSet<RatingEntity> Ratings { get; set; }
         public DbSet<AlertsEntity> Alerts { get; set; }
         public DbSet<ProblemNotificationEntity> ProblemNotifications { get; set; }
+        public DbSet<PhotoEntity> Photos { get; set; }
+
     }
 }

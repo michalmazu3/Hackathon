@@ -47,10 +47,25 @@ namespace Hackathon.Garbage.Api.Controllers
                 var res = _orderRepository.CreateOrUpdate(order);
                 return Ok(res);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return BadRequest();
             }
+        }
+
+        [HttpPost("Photos")]
+        public IActionResult PostPhoto([FromBody] Byte[] photo, int orderId)
+        {
+            return Ok();
+        }   
+
+        [HttpGet("Photos")]
+        public IActionResult GetPhotos(int orderId,int index)
+        {
+            var photo = _orderRepository.GetPhotos(orderId,index);
+            
+            return File(photo, "image/jpeg");
+
         }
     }
 }

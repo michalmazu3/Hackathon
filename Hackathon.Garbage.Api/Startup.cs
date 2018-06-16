@@ -52,6 +52,8 @@ namespace Hackathon.Garbage.Dal
             services.AddScoped<IOrdersRepository, OrdersRepository>();
             services.AddScoped<IExecutiveRepository, ExecutiveRepository>();
             services.AddScoped<IAlertsRepository, AlertsRepository>();
+            services.AddScoped<IRatingRepository, RatingRepository>();
+            services.AddScoped<IPhotosRepository, PhotosRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
