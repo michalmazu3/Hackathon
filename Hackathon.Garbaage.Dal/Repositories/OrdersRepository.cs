@@ -31,7 +31,7 @@ namespace Hackathon.Garbage.Dal.Repositories
                 if (field == null)
                     throw new KeyNotFoundException();
                 if (executive == null)
-                    _executiveRepository.CreateOrUpdate(new ExecutiveBllModel { Name = order.Executive.Name });
+                    _executiveRepository.CreateOrUpdate(new ExecutiveBllModel { Name = order.Executive.Name },out executive);
 
                 return _floraDbContext.SaveChanges();
 

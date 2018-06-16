@@ -43,6 +43,7 @@ namespace Hackathon.Garbage.Dal.DbContexts
         public DbSet<ExecutiveEntity> Executives { get; set; }
         public DbSet<OrderEntity> Orders { get; set; }
         public DbSet<RatingEntity> Ratings { get; set; }
-
+        public DbSet<AlertsEntity> Alerts { get; set; }
+        public DbSet<ProblemNotificationEntity> ProblemNotifications { get; set; }
     }
 }
