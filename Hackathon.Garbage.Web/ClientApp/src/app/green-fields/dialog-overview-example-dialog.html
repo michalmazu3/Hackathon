@@ -15,8 +15,8 @@
     <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="80px">-->
     <!-- two line list -->
     <!-- three line list -->
-    <mat-list>
-      <h3>Historia prac:</h3>
+    <mat-list class="make-scrollable" flex>
+ 
       <mat-list-item *ngFor="let order of field.orders">
         <h3 matLine>Wykonawca: {{order.executive.name}} </h3>
         <p matLine>Termin do: {{order.deadlineDate}} </p>
@@ -40,26 +40,106 @@
 
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Oceny mieszkaców
+        Oceny mieszkańców
       </mat-panel-title>
       <mat-panel-description>
-        Lista oocen i komentarzy miezkaców na temat tego miejsca
+        Lista oocen i komentarzy mieszkańców na temat tego miejsca
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <mat-list>
-      <h3>oceny mieszkańcó</h3>
+    <mat-list class="make-scrollable" flex>
+ 
       <mat-list-item *ngFor="let rating of field.ratings">
-        <h3 matLine>Osena 1-5: {{rating.score}} </h3>
+        <h3 matLine>Ocena 1-5: {{rating.score}} </h3>
         <p matLine>Osoba: {{rating.user}} </p>
         <p matLine class="demo-2">Komentarz: {{rating.comment}}</p>
 
 
       </mat-list-item>
     </mat-list>
-    d
+
   </mat-expansion-panel>
 
+  <mat-expansion-panel (opened)="basicPanelOpenState = true"
+                       (closed)="basicPanelOpenState = false">
 
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Zaplanuj prace
+      </mat-panel-title>
+      <mat-panel-description>
+        planowanie prac
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="example-container">
+      <form class="form-horizontal"  [formGroup]="planExecutiveForm">
+
+        <!--<mat-form-field class="bl">
+    <input matInput placeholder="">
+  </mat-form-field>-->
+
+        <mat-form-field class="bl">
+          <mat-select placeholder="Wybierz wykonawce">
+            <mat-option value="1">Firma A</mat-option>
+            <mat-option value="2">Firma B</mat-option>
+            <mat-option value="3">Firma C</mat-option>
+
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="bl">
+          <input matInput [matDatepicker]="picker2" placeholder="Wybierz date zakończenia" formControlName="dateTo">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <button class="mat-raised-button mat-primary" (click)="planExecutive()">Zapisz</button>
+      </form>
+
+    </div>
+
+
+
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="basicPanelOpenState = true"
+                       (closed)="basicPanelOpenState = false">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Dodaj ostrzeżenie
+      </mat-panel-title>
+      <mat-panel-description>
+        powiadom mieszkańców o jakimś wydarzeniu
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="example-container">
+      <form class="form-horizontal" [formGroup]="alertForm">
+
+        <mat-form-field class="bl">
+          <input matInput placeholder="Tytuł"
+                 formControlName="title">
+        </mat-form-field>
+        <mat-form-field class="bl">
+          <input matInput placeholder="Opis"
+                 formControlName="message">
+        </mat-form-field>
+
+
+        <mat-form-field class="bl">
+          <input matInput [matDatepicker]="picker" placeholder="Wybierz date rozpoczęcia" formControlName="dateFrom">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="bl">
+          <input matInput [matDatepicker]="picker3" placeholder="Wybierz date zakończenia" formControlName="dateTo">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+        <button class="mat-raised-button mat-primary" (click)="planExecutive()">Zapisz</button>
+      </form>
+
+    </div>
+
+  </mat-expansion-panel>
   <button class="mat-raised-button" (click)="close()">Zamknij</button>
   <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
 </mat-accordion>

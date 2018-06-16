@@ -11,6 +11,7 @@ import { Field, Cordinate, Order } from '../model/api/api.models';
 import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA, MatFormField, MatDialogActions, MatDialogContent, MatInput, MatList } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EXPANSION_HELPERS } from '../material-widgets/expansion-panel/helpers.data';
+import { ScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-green-fields',
@@ -84,12 +85,15 @@ export class GreenFieldsComponent implements OnInit {
 
 
     const dialogConfig = new MatDialogConfig();
-    //dialogConfig.minHeight = '200px',
-    //  dialogConfig.minWidth = '400px',
+    dialogConfig.maxHeight = '200px',
+      dialogConfig.minWidth = '400px',
+      dialogConfig.position = {
+        top: '5px'
+      };
 
       dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-
+ 
     dialogConfig.data = {
       field: field
     };
@@ -103,10 +107,14 @@ export class GreenFieldsComponent implements OnInit {
 }
 @Component({
   selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog-overview-example-dialog.html'
+  templateUrl: 'dialog-overview-example-dialog.html',
+  styleUrls: ['./green-fields.component.scss']
+
 })
 export class DialogOverviewExampleDialog {
 
+  planExecutiveForm: FormGroup;
+  alertForm: FormGroup;
   form: FormGroup;
   description: string;
 
@@ -128,6 +136,24 @@ export class DialogOverviewExampleDialog {
   ngOnInit() {
     this.form = this.fb.group({
       description: [this.description, []],
+
+    });
+
+    this.planExecutiveForm = this.fb.group({
+      title: ['', []],
+      message: ['', []],
+      dateFrom: ['', []],
+      dateTo: ['', []]
+
+
+    });
+
+    this.alertForm = this.fb.group({
+      title: ['', []],
+      message: ['', []],
+      dateFrom: ['', []],
+      dateTo: ['', []]
+
 
     });
   }
