@@ -74,10 +74,10 @@ export class GreenFieldsService extends BaseService {
     headers = headers.set('Accept', 'application/json');
 
     var body = {
-      "Alerts": model
+      "alert": model
     }
 
-    return this.httpClient.post<Alerts>(`${this.baseUrl}/${this.controllerUrl}/createweighingdefinition`, model, { headers: headers }).
+    return this.httpClient.post<Alerts>(`${this.baseUrl}/alert/CreateOrUpdate`, model, { headers: headers }).
       pipe(
         tap((t) => { console.log(t) }),
        );
@@ -90,10 +90,10 @@ export class GreenFieldsService extends BaseService {
     headers = headers.set('Accept', 'application/json');
 
     var body = {
-      "Order": model
+      "order": model
     }
 
-    return this.httpClient.post<Order>(`${this.baseUrl}/${this.controllerUrl}/createweighingdefinition`, model, { headers: headers }).
+    return this.httpClient.post<Order>(`${this.baseUrl}/Orders/CreateOrUpdate`, model, { headers: headers }).
       pipe(
         tap((t) => { console.log(t) }),
     );
