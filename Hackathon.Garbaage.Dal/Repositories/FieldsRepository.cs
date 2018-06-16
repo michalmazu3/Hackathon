@@ -53,6 +53,7 @@ namespace Hackathon.Garbage.Dal.Repositories
                         Fields.
                         Include(x => x.Cordinates).
                         Include(x => x.Orders).
+                        ThenInclude(x => x.Executive).
                         ToListAsync().Result;
                 data = data.Select(x =>
                         {
