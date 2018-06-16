@@ -6,6 +6,7 @@ using Hackathon.Garbage.Dal.DbContexts;
 using Hackathon.Garbage.Dal.Entities;
 using Hackathon.Garbage.Dal.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hackathon.Garbage.Dal.Repositories
 {
@@ -41,5 +42,26 @@ namespace Hackathon.Garbage.Dal.Repositories
                 throw ex;
             }
         }
+
+        public List<OrderEntity> GetAll()
+        {
+
+            try
+            {
+                return _floraDbContext.Orders
+                    .Include(s => s.Executive)
+                    .Include(v => v.Field)
+                    .Include(v=>v.Field).ThenInclude(f=>f.Cordinates)
+                    .ToList();
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+        } 
+
+
     }
 }

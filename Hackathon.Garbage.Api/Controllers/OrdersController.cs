@@ -22,6 +22,23 @@ namespace Hackathon.Garbage.Api.Controllers
             _orderRepository = ordersRepository;
         }
 
+
+
+        [HttpGet("GetAll")]
+        public IActionResult GetAll()
+        {
+            try
+            {
+                var res = _orderRepository.GetAll();
+                return Ok(res);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+
         [HttpPost]
         public IActionResult CreateOrUpdate([FromBody] OrderBllModel order)
         {

@@ -7,8 +7,10 @@
           </agm-polyline-point>
         </agm-polygon>-->
 
-        <agm-polygon *ngFor="let field of fields" [editable]="false" [polyDraggable]="false" [paths]="field.cordinates" (polyClick)="clickField(field)">
- 
+        <agm-polygon *ngFor="let field of fields" [editable]="false" [polyDraggable]="false" [paths]="field.cordinates" (polyMouseOver)="mouseOver(infoWindow)" (polyClick)="clickField(field)">
+          <agm-info-window [disableAutoPan]="false" #infoWindow>
+            <strong>InfoWindow content</strong>
+          </agm-info-window>
         </agm-polygon>
 
         <agm-marker *ngFor="let m of markers" [latitude]="m.latitude" [longitude]="m.longitude" modelsbyref="false">

@@ -15,10 +15,12 @@ import { MatDialogModule, MatListModule } from "@angular/material";
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
 
-import { MatButtonModule, MatNativeDateModule, MatInputModule, MatCard, MatCardContent, MatSelectModule, MatCardModule, MatOptionModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatNativeDateModule, MatInputModule, MatCard, MatCardContent, MatSelectModule, MatCardModule, MatOptionModule } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import 'hammerjs';
-
+ import 'mousetrap';
+import { ModalGalleryModule } from '@ks89/angular-modal-gallery';
+import { StarPipe } from './star.pipe';
 export const appRoutes: Routes = [
   { path: '', component: GreenFieldsComponent, data: { animation: 'googlemap' } },
 
@@ -31,11 +33,13 @@ export function highlightJsFactory(): any {
 
 @NgModule({
   imports: [
+    MatIconModule,
+    ModalGalleryModule.forRoot(),
     CommonModule,
     FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
-    MatDialogModule,
+     MatDialogModule,
     MatFormFieldModule,
     HttpClientModule,
     MatListModule,
@@ -57,7 +61,7 @@ export function highlightJsFactory(): any {
   ],
 
   declarations: [
-    GreenFieldsComponent, DialogOverviewExampleDialog],
+    GreenFieldsComponent, DialogOverviewExampleDialog, StarPipe],
 
   exports: [
   ],

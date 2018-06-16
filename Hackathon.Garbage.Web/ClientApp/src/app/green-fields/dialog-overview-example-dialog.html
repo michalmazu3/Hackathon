@@ -16,13 +16,15 @@
     <!-- two line list -->
     <!-- three line list -->
     <mat-list class="make-scrollable" flex>
- 
       <mat-list-item *ngFor="let order of field.orders">
         <h3 matLine>Wykonawca: {{order.executive.name}} </h3>
         <p matLine>Termin do: {{order.deadlineDate}} </p>
         <p matLine>Zakończenie zlecenia: {{order.finishDate}} </p>
         <p matLine class="demo-2" *ngIf="order.status==0">Status: zakończone</p>
         <p matLine class="demo-2" *ngIf="order.status==1">Status: w trakcie</p>
+        <ks-modal-gallery [id]="1" [modalImages]="images"></ks-modal-gallery>
+
+
 
       </mat-list-item>
     </mat-list>
@@ -49,7 +51,7 @@
     <mat-list class="make-scrollable" flex>
  
       <mat-list-item *ngFor="let rating of field.ratings">
-        <h3 matLine>Ocena 1-5: {{rating.score}} </h3>
+        <h3 matLine>Ocena 1-5: {{rating.score }} </h3>
         <p matLine>Osoba: {{rating.user}} </p>
         <p matLine class="demo-2">Komentarz: {{rating.comment}}</p>
 
@@ -141,6 +143,6 @@
 
   </mat-expansion-panel>
   <button class="mat-raised-button" (click)="close()">Zamknij</button>
-  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+  <!--<button class="mat-raised-button mat-primary" (click)="save()">Save</button>-->
 </mat-accordion>
 

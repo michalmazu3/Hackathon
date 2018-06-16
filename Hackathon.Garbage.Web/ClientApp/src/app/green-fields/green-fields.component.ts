@@ -8,13 +8,14 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr'
 import { VertexModel } from '../models/vertex.model';
 import { LatLngLiteral } from '../models/google-maps-types';
 import { Field, Cordinate, Order } from '../model/api/api.models';
-import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA, MatFormField, MatDialogActions, MatDialogContent, MatInput, MatList } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA, MatFormField, MatCard, MatIcon, MatDialogActions, MatDialogContent, MatInput, MatList } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EXPANSION_HELPERS } from '../material-widgets/expansion-panel/helpers.data';
 import { ScrollStrategy } from '@angular/cdk/overlay';
 import { GreenFieldsService } from '../service/green-fields/green-fields.service';
 import { log } from '@firebase/database/dist/esm/src/core/util/util';
-
+import { Image } from '@ks89/angular-modal-gallery';
+import { StarPipe } from './star.pipe'
 @Component({
   selector: 'app-green-fields',
   templateUrl: './green-fields.component.html',
@@ -29,6 +30,8 @@ export class GreenFieldsComponent implements OnInit {
   height: string = '500px';
   fields: Field[];
   expansionHelpers = EXPANSION_HELPERS;
+ 
+
 
 
 
@@ -102,6 +105,11 @@ export class GreenFieldsComponent implements OnInit {
 
     this.dialog.open(DialogOverviewExampleDialog, dialogConfig);
   }
+  mouseOver(): void{
+
+    console.log('over');
+  }
+
 
   private convertStringToNumber(value: string): number {
     return +value;
@@ -123,7 +131,16 @@ export class DialogOverviewExampleDialog {
 
   field: Field;
 
-
+  images: Image[] = [
+    new Image(
+      0,
+      { // modal
+        img: 'http://images29.fotosik.pl/196/b6ddff77267a1c4amed.jpg',
+        extUrl: 'http://www.google.com'
+      }
+    )
+ 
+  ];
   constructor(
     private fb: FormBuilder,
     @Inject('greenFieldsService') private greenFieldsService: GreenFieldsService,
@@ -161,7 +178,10 @@ export class DialogOverviewExampleDialog {
 
 
     console.log(this.planExecutiveForm.value)
-      this.greenFieldsService.createOrder(this.planExecutiveForm.value).subscribe(res => console.log("dodano"));
+    this.greenFieldsService.createOrder(this.planExecutiveForm.value).subscribe(res => {
+      console.log("dodano");
+      
+    });
 
   }
 
