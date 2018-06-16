@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Hackathon.Garbage.Dal
 {
@@ -28,7 +30,10 @@ namespace Hackathon.Garbage.Dal
                           //options.UseSqlServer("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = D:\\dev\\hackathon\\Database\\FloraDb.mdf;Integrated Security=True")
                           options.UseSqlServer(Configuration.GetConnectionString("FreeMsDb"))
                           );
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(options => {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            }); ;
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
            builder =>

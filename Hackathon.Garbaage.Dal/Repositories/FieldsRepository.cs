@@ -54,8 +54,9 @@ namespace Hackathon.Garbage.Dal.Repositories
                         Include(x => x.Cordinates).
                         Include(x => x.Orders).
                         ThenInclude(x => x.Executive).
+                        Include(x => x.Ratings).
                         ToListAsync().Result;
-                data = data.Select(x =>
+                /*data = data.Select(x =>
                         {
                             if (x.Cordinates != null)
                                 x.Cordinates = x.Cordinates.Select(y => { y.Field = null; return y; }).ToList();
@@ -65,7 +66,7 @@ namespace Hackathon.Garbage.Dal.Repositories
                                 x.Ratings = x.Ratings.Select(y => { y.Field = null; return y; }).ToList();
                             return x;
                         }).
-                        ToList();
+                        ToList();*/
                 
                 var result = _mapper.Map<List<FieldBllModel>>(data);
                 return result;
