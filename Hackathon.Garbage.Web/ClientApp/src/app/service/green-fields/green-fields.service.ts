@@ -4,7 +4,7 @@ import { BaseService } from '../base.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { Field, Cordinate, Order } from '../../model/api/api.models';
+import { Field, Cordinate, Order, Alerts } from '../../model/api/api.models';
  
 @Injectable()
 export class GreenFieldsService extends BaseService {
@@ -67,22 +67,39 @@ export class GreenFieldsService extends BaseService {
   //    );
   //}
 
-  //create(id:number, model: any): Observable<WeighingDefinitionModel> {
-  //  let headers = new HttpHeaders();
+  createAlert(model: any): Observable<Alerts> {
+    let headers = new HttpHeaders();
 
-  //  headers = headers.set('Content-Type', 'application/json');
-  //  headers = headers.set('Accept', 'application/json');
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('Accept', 'application/json');
 
-  //  var body = {
-  //    "weighingDefinition": model
-  //  }
+    var body = {
+      "Alerts": model
+    }
 
-  //  return this.httpClient.post<WeighingDefinitionModel>(`${this.baseUrl}/${this.controllerUrl}/createweighingdefinition/${id}`, model, { headers: headers }).
-  //    pipe(
-  //      tap((t) => { console.log(t) }),
-  //      catchError(this.handleError('create WeighingDefinition', null))
-  //    );
-  //}
+    return this.httpClient.post<Alerts>(`${this.baseUrl}/${this.controllerUrl}/createweighingdefinition`, model, { headers: headers }).
+      pipe(
+        tap((t) => { console.log(t) }),
+       );
+  }
+
+  createOrder(model: any): Observable<Order> {
+    let headers = new HttpHeaders();
+
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('Accept', 'application/json');
+
+    var body = {
+      "Order": model
+    }
+
+    return this.httpClient.post<Order>(`${this.baseUrl}/${this.controllerUrl}/createweighingdefinition`, model, { headers: headers }).
+      pipe(
+        tap((t) => { console.log(t) }),
+    );
+  }
+
+
 
   //selectToEdit(weighingDefinitionModel: WeighingDefinitionMessage) {
   //  this.weighingDefinitionSource.next(weighingDefinitionModel);

@@ -12,6 +12,8 @@ import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA, MatFormField
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EXPANSION_HELPERS } from '../material-widgets/expansion-panel/helpers.data';
 import { ScrollStrategy } from '@angular/cdk/overlay';
+import { GreenFieldsService } from '../service/green-fields/green-fields.service';
+import { log } from '@firebase/database/dist/esm/src/core/util/util';
 
 @Component({
   selector: 'app-green-fields',
@@ -27,7 +29,7 @@ export class GreenFieldsComponent implements OnInit {
   height: string = '500px';
   fields: Field[];
   expansionHelpers = EXPANSION_HELPERS;
- 
+
 
 
   @ViewChild(AgmMap) private myMap: AgmMap;
@@ -81,7 +83,7 @@ export class GreenFieldsComponent implements OnInit {
 
 
   test: string = "dfsdfsf";
-  openDialog(field :Field) {
+  openDialog(field: Field) {
 
 
     const dialogConfig = new MatDialogConfig();
@@ -91,9 +93,9 @@ export class GreenFieldsComponent implements OnInit {
         top: '5px'
       };
 
-      dialogConfig.disableClose = true;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
- 
+
     dialogConfig.data = {
       field: field
     };
@@ -124,13 +126,14 @@ export class DialogOverviewExampleDialog {
 
   constructor(
     private fb: FormBuilder,
+    @Inject('greenFieldsService') private greenFieldsService: GreenFieldsService,
     private dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) data) {
 
     this.field = data.field;
     this.description = data.description;
 
- 
+
   }
 
   ngOnInit() {
@@ -140,22 +143,30 @@ export class DialogOverviewExampleDialog {
     });
 
     this.planExecutiveForm = this.fb.group({
-      title: ['', []],
-      message: ['', []],
-      dateFrom: ['', []],
-      dateTo: ['', []]
-
-
+      fieldId: [this.field.id],
+      executiveId: ['', []],
+      deadlineDate: ['', []],
+      status: [1]
     });
-
     this.alertForm = this.fb.group({
       title: ['', []],
       message: ['', []],
-      dateFrom: ['', []],
-      dateTo: ['', []]
-
+      startDate: ['', []],
+      endDate: ['', []]
 
     });
+  }
+
+  planExecutive(): void {
+    console.log(this.planExecutiveForm.value)
+    //  this.greenFieldsService.createOrder(this.planExecutiveForm.value).subscribe(res => console.log("dodano"));
+
+  }
+
+  alerts(): void {
+    console.log(this.alertForm.value)
+
+
   }
 
   save() {

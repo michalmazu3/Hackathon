@@ -15,6 +15,7 @@ export class Order {
   executive?: Executive;
   deadlineDate: string;
   finishDate: string;
+  status: number
 }
 
 export class Cordinate {
@@ -35,5 +36,14 @@ export class Rating {
 export class Executive {
   id: number;
   name: string;
+
+}
+export class Alerts {
+
+  id: number;
+  title: string;
+  message: string;
+  startDate?: string;
+  endDate?: string;
 
 }
