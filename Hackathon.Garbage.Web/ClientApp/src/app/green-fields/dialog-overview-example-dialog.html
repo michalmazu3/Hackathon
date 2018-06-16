@@ -78,7 +78,7 @@
   </mat-form-field>-->
 
         <mat-form-field class="bl">
-          <mat-select placeholder="Wybierz wykonawce">
+          <mat-select placeholder="Wybierz wykonawce"  formControlName="executiveId">
             <mat-option value="1">Firma A</mat-option>
             <mat-option value="2">Firma B</mat-option>
             <mat-option value="3">Firma C</mat-option>
@@ -87,7 +87,7 @@
         </mat-form-field>
 
         <mat-form-field class="bl">
-          <input matInput [matDatepicker]="picker2" placeholder="Wybierz date zakończenia" formControlName="dateTo">
+          <input matInput [matDatepicker]="picker2" placeholder="Wybierz date zakończenia" formControlName="deadlineDate">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
@@ -124,17 +124,17 @@
 
 
         <mat-form-field class="bl">
-          <input matInput [matDatepicker]="picker" placeholder="Wybierz date rozpoczęcia" formControlName="dateFrom">
+          <input matInput [matDatepicker]="picker" placeholder="Wybierz date rozpoczęcia" formControlName="startDate">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field class="bl">
-          <input matInput [matDatepicker]="picker3" placeholder="Wybierz date zakończenia" formControlName="dateTo">
+          <input matInput [matDatepicker]="picker3" placeholder="Wybierz date zakończenia" formControlName="endDate">
           <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
           <mat-datepicker #picker3></mat-datepicker>
         </mat-form-field>
-        <button class="mat-raised-button mat-primary" (click)="planExecutive()">Zapisz</button>
+        <button class="mat-raised-button mat-primary" (click)="alerts()">Zapisz</button>
       </form>
 
     </div>
