@@ -3,7 +3,7 @@
 namespace Hackathon.Garbage.Dal.Entities
 {
     [Table(name: "ProblemNotification")]
-    public class ProblemNotification : IEntity
+    public class ProblemNotificationEntity : IEntity
     {
         public int Id { get; set; }
         public string User { get; set; }
