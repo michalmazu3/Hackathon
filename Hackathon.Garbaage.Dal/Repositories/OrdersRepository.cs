@@ -14,15 +14,18 @@ namespace Hackathon.Garbage.Dal.Repositories
     {
         private readonly IExecutiveRepository _executiveRepository;
         private readonly IMapper _mapper;
+        private readonly IPhotosRepository _photosRepository;
 
         public OrdersRepository(
             FloraDbContext floraDbContext,
             IExecutiveRepository executiveRepository,
-            IMapper mapper
+            IMapper mapper,
+            IPhotosRepository photosRepository
             ) : base(floraDbContext)
         {
             _executiveRepository = executiveRepository;
             _mapper = mapper;
+            _photosRepository = photosRepository;
         }
 
         public int CreateOrUpdate(OrderBllModel order)
@@ -50,5 +53,15 @@ namespace Hackathon.Garbage.Dal.Repositories
                 throw ex;
             }
         }
+        public Byte[] GetPhotos(int orderId, int index)
+        {
+            var res =_photosRepository.GetByOrder(orderId);
+            var photoPath = res.Skip(index).Take(1).FirstOrDefault();
+
+            Byte[] b = System.IO.File.ReadAllBytes(photoPath);
+            return b;
+        }
+
+
     }
 }

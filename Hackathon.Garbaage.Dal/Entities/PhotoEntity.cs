@@ -8,7 +8,7 @@ namespace Hackathon.Garbage.Dal.Entities
     {
         public int Id { get; set; }
         public string Path { get; set; }
-        public int OrderId { get; set; }
+        public int? OrderId { get; set; }
         public int? RatingId { get; set; }
 
         public virtual OrderEntity Order {get;set;}
