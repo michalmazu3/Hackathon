@@ -29,6 +29,8 @@ namespace Hackathon.Garbage.Dal.Entities
         public DateTime DeadlineDate { get; set; }
         public DateTime? FinishDate { get; set; }
         public OrderStatus Status { get; set; }
+        public string Title { get; set; }
+        public string Type{ get; set; }
 
 
         public virtual FieldEntity Field { get; set; }

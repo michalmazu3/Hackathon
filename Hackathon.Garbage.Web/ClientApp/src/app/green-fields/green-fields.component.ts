@@ -27,7 +27,7 @@ export class GreenFieldsComponent implements OnInit {
   lng: number = 20.628671;
   lat: number = 50.865544;
   zoom: number = 0;
-  height: string = '500px';
+  height: string = '800px';
   fields: Field[];
   expansionHelpers = EXPANSION_HELPERS;
  
